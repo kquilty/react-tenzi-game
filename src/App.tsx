@@ -1,5 +1,8 @@
 import { useState, type JSX } from 'react'
 import './App.css'
+import Gameboard from './components/Gameboard'
+import Die from './components/Die'
+import RollDiceButton from './components/RollDiceButton'
 
 function App() {
     const [dieComponents, setDieComponents] = useState<JSX.Element[]>([])
@@ -29,34 +32,5 @@ function App() {
     )
 }
 
-
-function Gameboard({dieComponents}: {dieComponents: JSX.Element[]}) {
-    return (
-        <div className='gameboard'>
-            {dieComponents}
-        </div>
-    )
-}
-function Die(props: DieProps){
-    return (
-        <div className={props.isHeld ? "die held" : "die"}>
-            {props.value}
-        </div>
-    )
-}
-interface DieProps {
-    value: number,
-    isHeld: boolean
-}
-function RollDiceButton({onRollDiceClick}: {onRollDiceClick: () => void}){
-    return (
-        <button 
-            className='roll-dice-button'
-            onClick={onRollDiceClick}
-        >
-            Roll Dice
-        </button>
-    )
-}
 
 export default App
