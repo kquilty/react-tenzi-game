@@ -14,3 +14,23 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+.gameboard {
+    border: 1px solid silver;
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 40px;
+}
+.die {
+    border: 1px solid black;
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
