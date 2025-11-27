@@ -34,3 +34,6 @@ body {
     justify-content: center;
     align-items: center;
 }
+.held {
+    background-color: lightgreen;
+}
