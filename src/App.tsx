@@ -1,27 +1,39 @@
-// import { useState } from 'react'
+import { useState, type JSX } from 'react'
 import './App.css'
 
 function App() {
+    const [dieComponents, setDieComponents] = useState<JSX.Element[]>([])
 
-  return (
+    // rollAllDiceFresh()
+
+    function GetRandomDieNumber() {
+        return Math.ceil(Math.random() * 6);
+    }
+
+    function onRollDiceClick(){
+        rollAllDiceFresh()
+    }
+    function rollAllDiceFresh(){
+        const newDieComponents = []
+        for(let i = 0; i < 9; i++){
+            newDieComponents.push(<Die value={GetRandomDieNumber()} isHeld={false} />)
+        }
+        setDieComponents(newDieComponents)
+    }
+
+    return (
     <div className="App">
-        <Gameboard />
+        <Gameboard dieComponents={dieComponents} />
+        <RollDiceButton onRollDiceClick={onRollDiceClick} />
     </div>
-  )
+    )
 }
 
-function Gameboard(){
+
+function Gameboard({dieComponents}: {dieComponents: JSX.Element[]}) {
     return (
         <div className='gameboard'>
-            <Die value={1} isHeld={false} />
-            <Die value={2} isHeld={false} />
-            <Die value={3} isHeld={false} />
-            <Die value={4} isHeld={false} />
-            <Die value={5} isHeld={false} />
-            <Die value={6} isHeld={false} />
-            <Die value={7} isHeld={false} />
-            <Die value={8} isHeld={false} />
-            <Die value={9} isHeld={false} />
+            {dieComponents}
         </div>
     )
 }
@@ -35,6 +47,16 @@ function Die(props: DieProps){
 interface DieProps {
     value: number,
     isHeld: boolean
+}
+function RollDiceButton({onRollDiceClick}: {onRollDiceClick: () => void}){
+    return (
+        <button 
+            className='roll-dice-button'
+            onClick={onRollDiceClick}
+        >
+            Roll Dice
+        </button>
+    )
 }
 
 export default App
