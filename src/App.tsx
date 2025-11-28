@@ -1,11 +1,12 @@
 import { useState, type JSX } from 'react'
 import './App.css'
+
 import Gameboard from './components/Gameboard'
-import Die from './components/Die'
+// import Die from './components/Die'
 import RollDiceButton from './components/RollDiceButton'
 
 function App() {
-    const [dieComponents, setDieComponents] = useState<JSX.Element[]>([])
+    const [dieObjects, setDieObjects] = useState<DieObject[]>([])
 
     // rollAllDiceFresh()
 
@@ -17,20 +18,40 @@ function App() {
         rollAllDiceFresh()
     }
     function rollAllDiceFresh(){
-        const newDieComponents = []
+        const newDieObjects = []
         for(let i = 0; i < 9; i++){
-            newDieComponents.push(<Die value={GetRandomDieNumber()} isHeld={false} />)
+            newDieObjects.push({
+                    value: GetRandomDieNumber(),
+                    isHeld: false
+                }
+            )
         }
-        setDieComponents(newDieComponents)
+        setDieObjects(newDieObjects)
+    }
+
+    function handleDieClick(dieIndex: number){
+        const newDieObjects = [...dieObjects]
+
+        // Toggle isHeld
+        newDieObjects[dieIndex].isHeld = !newDieObjects[dieIndex].isHeld
+        
+        setDieObjects(newDieObjects)
     }
 
     return (
-    <div className="App">
-        <Gameboard dieComponents={dieComponents} />
-        <RollDiceButton onRollDiceClick={onRollDiceClick} />
-    </div>
+        <div className="App">
+            <Gameboard 
+                dieObjects={dieObjects} 
+                onDieClick={handleDieClick}
+            />
+            <RollDiceButton onRollDiceClick={onRollDiceClick} />
+        </div>
     )
 }
 
+export type DieObject = {
+    value: number,
+    isHeld: boolean
+}
 
 export default App
