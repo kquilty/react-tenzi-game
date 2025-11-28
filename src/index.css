@@ -1,5 +1,5 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+:root button {
+  font-family: Nunito, system-ui, Helvetica, Arial, sans-serif;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,7 +16,7 @@ body {
 }
 
 .gameboard {
-    border: 1px solid silver;
+    border: 1px solid rgb(226, 226, 226);
 
     display: grid;
     grid-template-columns: auto auto auto;
@@ -24,15 +24,20 @@ body {
     align-items: center;
     gap: 30px;
     padding: 40px;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 .die {
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.37);
     width: 70px;
     height: 70px;
 
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 24px;
+    border-radius: 10px;
 }
 .held {
     background-color: lightgreen;
@@ -42,4 +47,10 @@ body {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    width: 150px;
+}
+.won-message{
+    font-size: 24px;
+    color: green;
+    margin-top: 20px;
 }
